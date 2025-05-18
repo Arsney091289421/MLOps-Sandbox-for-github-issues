@@ -1,0 +1,5 @@
+PyGithub
+python-dotenv
+pandas
+pyarrow
+boto3
