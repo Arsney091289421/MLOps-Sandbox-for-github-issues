@@ -4,3 +4,6 @@ pandas
 pyarrow
 boto3
 pqdm
+optuna
+xgboost
+scikit-learn
