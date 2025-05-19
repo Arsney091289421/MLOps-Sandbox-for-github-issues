@@ -20,14 +20,21 @@ def extract_features(row):
     created_at = row["created_at"]
     closed_at = row["closed_at"]
 
+    # Features as Python values
+    has_bug_label = int("bug" in labels)
+    closed_within_7_days = (
+        int((closed_at - created_at) <= timedelta(days=7))
+        if pd.notna(closed_at) and pd.notna(created_at) else 0
+    )
+
     return {
         "title_len": len(title),
         "body_len": len(body),
         "num_labels": len(labels),
-        "has_bug_label": "bug" in labels,
+        "has_bug_label": has_bug_label,
         "hour_created": created_at.hour if not pd.isna(created_at) else None,
         "comments": row["comments"],
-        "closed_within_7_days": (closed_at - created_at) <= timedelta(days=7) if pd.notna(closed_at) and pd.notna(created_at) else None
+        "closed_within_7_days": closed_within_7_days
     }
 
 def generate_features(input_path, output_path):
@@ -47,9 +54,13 @@ def generate_features(input_path, output_path):
         feature_rows.append(feats)
 
     feature_df = pd.DataFrame(feature_rows)
-    # save original issue number
+    # Save original issue number
     if "number" in df.columns:
         feature_df["number"] = df["number"].values
+
+    # (Optional, here it's guaranteed, but for robustness you could force type again)
+    feature_df["closed_within_7_days"] = feature_df["closed_within_7_days"].astype(int)
+    feature_df["has_bug_label"] = feature_df["has_bug_label"].astype(int)
 
     feature_df.to_parquet(output_path, index=False)
     print(f"[DONE] Saved features to {output_path}")
