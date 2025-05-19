@@ -10,7 +10,7 @@ load_dotenv()
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = "huggingface/transformers"
-DATA_DIR = "/Users/daniel/Documents/projects/data"
+DATA_DIR = os.getenv("DATA_BASE_DIR", "./data")  # fallback to ./data if not set
 
 def fetch_closed_issues(since=None, until=None, save_path=None):
     """
