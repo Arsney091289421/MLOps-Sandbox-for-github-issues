@@ -1,3 +1,19 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# pytest
+.pytest_cache/
+
+# VSCode
+.vscode/
+
+# venv and env files
+.venv/
 .env
-.venv
+
+# Build
 *.egg-info/
+dist/
+build/

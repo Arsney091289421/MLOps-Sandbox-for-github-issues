@@ -7,3 +7,5 @@ pqdm
 optuna
 xgboost
 scikit-learn
+moto[s3]==4.2.13
+pytest
