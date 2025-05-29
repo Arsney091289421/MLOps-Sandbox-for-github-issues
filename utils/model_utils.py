@@ -58,7 +58,8 @@ def search_best_params(feature_path, n_trials, model_dir, param_dir):
     study.optimize(lambda trial: objective(trial, X, y), n_trials=n_trials)
 
     print("Best params:", study.best_params)
-    print("Best AUC:", 1.0 - study.best_value)
+    auc = 1.0 - study.best_value
+    print("Best AUC:", auc)
 
     # Save best params
     best_params_path = os.path.join(model_dir, "best_params.json")
@@ -78,6 +79,8 @@ def search_best_params(feature_path, n_trials, model_dir, param_dir):
     with open(hist_path, "w") as f:
         json.dump(study.best_params, f, indent=2)
     print(f"[SNAPSHOT] params snapshot: {hist_path}")
+
+    return auc
 
 # train_model.py
 
@@ -104,7 +107,8 @@ def train_xgboost(features_path, params_path, model_out):
         **best_params
     )
     model.fit(X, y)
-    print(f"[DONE] Model trained, AUC on train: {model.score(X, y):.4f}")
+    acc = model.score(X, y)
+    print(f"[DONE] Model trained, ACC on train: {acc:.4f}")
 
     # Save latest model
     model.save_model(model_out)  
@@ -118,3 +122,5 @@ def train_xgboost(features_path, params_path, model_out):
 
     print(f"[DONE] Model saved to: {model_out}")
     print(f"[SNAPSHOT] Historical model saved to: {history_model_path}")
+
+    return acc

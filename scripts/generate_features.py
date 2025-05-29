@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 from utils.data_utils import run_full_feature_generation, run_incremental_feature_generation
 
 load_dotenv()
-BASE_DIR = os.getenv("DATA_BASE_DIR", "./data")
-RAW_DIR = BASE_DIR
-FEATURE_DIR = os.path.join(BASE_DIR, "features")
+DATA_DIR = os.getenv("DATA_BASE_DIR", "./data")
+RAW_DIR = DATA_DIR
+FEATURE_DIR = os.path.join(DATA_DIR, "features")
 os.makedirs(FEATURE_DIR, exist_ok=True)
 
 if __name__ == "__main__":

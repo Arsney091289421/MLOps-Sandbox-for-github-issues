@@ -5,16 +5,16 @@ from utils.model_utils import load_config, search_best_params
 
 load_dotenv()
 
-DATA_BASE_DIR = os.getenv("DATA_BASE_DIR", "./data")
+DATA_DIR = os.getenv("DATA_BASE_DIR", "./data")
 MODEL_DIR = os.getenv("MODEL_DIR", "./models")
-PARAM_DIR = os.path.join(DATA_BASE_DIR, "params")
+PARAM_DIR = os.path.join(DATA_DIR, "params")
 CONFIG_PATH = os.getenv("CONFIG_PATH", "config.json")
 os.makedirs(MODEL_DIR, exist_ok=True)
 os.makedirs(PARAM_DIR, exist_ok=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--features", type=str, default=os.path.join(DATA_BASE_DIR, "features/issues_features_full.parquet"), help="Path to features parquet")
+    parser.add_argument("--features", type=str, default=os.path.join(DATA_DIR, "features/issues_features_full.parquet"), help="Path to features parquet")
     parser.add_argument("--config", type=str, default=CONFIG_PATH, help="Config JSON for n_trials")
     args = parser.parse_args()
 

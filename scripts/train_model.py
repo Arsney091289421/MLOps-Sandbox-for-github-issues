@@ -5,12 +5,12 @@ from utils.model_utils import train_xgboost
 
 load_dotenv()
 
-DATA_BASE_DIR = os.getenv("DATA_BASE_DIR", "./data")
-FEATURE_DIR = os.path.join(DATA_BASE_DIR, "features")
+DATA_DIR = os.getenv("DATA_BASE_DIR", "./data")
+FEATURE_DIR = os.path.join(DATA_DIR, "features")
 MODEL_DIR = os.getenv("MODEL_DIR", "./model")
 os.makedirs(MODEL_DIR, exist_ok=True)
 
-BEST_PARAMS_PATH = os.path.join(DATA_BASE_DIR, "params", "best_params.json")
+BEST_PARAMS_PATH = os.path.join(DATA_DIR, "params", "best_params.json")
 DEFAULT_MODEL_PATH = os.path.join(MODEL_DIR, "latest_model.json")
 DEFAULT_FEATURES_PATH = os.path.join(FEATURE_DIR, "issues_features_full_plus_increment.parquet")
 FALLBACK_FEATURES_PATH = os.path.join(FEATURE_DIR, "issues_features_full.parquet")
