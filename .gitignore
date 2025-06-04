@@ -21,3 +21,6 @@ build/
 # Perfect
 .prefect/
 config.toml
+prefect_server.log
+prefect_worker.log
+

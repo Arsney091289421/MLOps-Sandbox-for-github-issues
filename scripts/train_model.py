@@ -7,7 +7,7 @@ load_dotenv()
 
 DATA_DIR = os.getenv("DATA_BASE_DIR", "./data")
 FEATURE_DIR = os.path.join(DATA_DIR, "features")
-MODEL_DIR = os.getenv("MODEL_DIR", "./model")
+MODEL_DIR = os.getenv("MODEL_DIR", "./models")
 os.makedirs(MODEL_DIR, exist_ok=True)
 
 BEST_PARAMS_PATH = os.path.join(DATA_DIR, "params", "best_params.json")
