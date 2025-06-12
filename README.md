@@ -31,3 +31,20 @@ This repository provides a fully automated pipeline for collecting, processing, 
 ## 4. System Architecture
 
 ![System Architecture](docs/architecture.svg)
+
+## 5. Quick Start
+
+### 5.1 Prerequisites
+
+- **AWS Account**
+  - An S3 bucket for storing trained models (`models/latest_model.json`)
+- **GitHub Personal Access Token**
+  - Only `public_repo` scope is required for collecting public issue data
+- **Python 3.9 environment**
+  - Can be a local machine or cloud VM (e.g., AWS EC2)
+- **Prefect UI**
+  - For workflow visualization, monitoring, and alerting
+ 
+ > **Note:**  
+> Prefect Cloud requires a paid subscription for remote work pools.  
+> For most users, running a local Prefect server with `prefect server start` is free and sufficient.
