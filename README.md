@@ -180,7 +180,7 @@ Set all variables in `.env` (see `.env.example`).
 
 ---
 
-### 7.2 `config.json` Example
+### 7.2 `config.json` 
 
 ```json
 {
