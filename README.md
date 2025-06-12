@@ -215,3 +215,13 @@ pytest tests/
 - All tests use `pytest` fixtures and `tmp_path` for isolated temp files
 - S3 interactions are fully mocked using [moto](https://github.com/spulec/moto); no real AWS needed
 
+## 10. FAQ
+
+**S3 returns 403 / Access Denied?**  
+→ Check AWS credentials and S3 permissions. On EC2, prefer IAM role (no `.env` secrets needed).
+
+**GitHub token fails to fetch issues?**  
+→ Ensure `GITHUB_TOKEN` has `public_repo` scope and is valid.
+
+**No flow or scheduling error in Prefect UI?**  
+→ Create a local work pool and start an agent. Prefect Cloud free tier does **not** support work pools — use `prefect server start` locally.
