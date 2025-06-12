@@ -130,9 +130,9 @@ Use Prefect’s local server for free scheduling, monitoring, and alerting.
    Running your `@flow` function (e.g. in `main_flow.py`) will auto-register it.
    You can then trigger it or schedule it via the UI.
 
-   *💡Use the UI “Deployments” tab to set up schedules (e.g. daily at 5 AM).*
+   *Use the UI “Deployments” tab to set up schedules (e.g. daily at 5 AM).*
 
-> **Ensure your machine doesn’t sleep.** Recommended: desktop or cloud server.
+> **Note:** **Ensure your machine doesn’t sleep.** Recommended: desktop or cloud server.
 > macOS: use Amphetamine / `pmset`; Windows: set power options to “never sleep”.
 
 #### AUC Threshold Alerting
