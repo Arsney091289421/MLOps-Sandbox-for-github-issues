@@ -1,34 +1,59 @@
-## 1. Project Overview
+ ![CI](https://github.com/Arsney091289421/MLOps-Sandbox-for-github-issues/actions/workflows/ci.yml/badge.svg)
 
-This repository provides a fully automated pipeline for collecting, processing, and modeling GitHub issues, with the goal of predicting whether an issue will be closed within 7 days. It is designed to run locally or in the cloud, supporting incremental data updates, automated model training, and model export to AWS S3.
+## Table of Contents
 
-> **Note:** This project works together with [mlops-serve](https://github.com/Arsney091289421/mlops-serve),  
-> which handles model inference, prediction serving, and result upload on AWS EC2.  
-> This repo focuses on data collection, feature engineering, and model lifecycle automation.
+<details>
+<summary>Click to expand</summary>
 
+<br>
 
-## 2. Features
+1. [Project Overview](#1-project-overview)  
+2. [Features](#2-features)  
+3. [Tech Stack](#3-tech-stack)  
+4. [System Architecture](#4-system-architecture)  
+5. [Quick Start](#5-quick-start)  
+   - [Prerequisites](#51-prerequisites)  
+   - [Deployment](#52-deployment)  
+6. [Workflow & Automation](#6-workflow--automation)  
+   - [Full Workflow Overview](#61-full-workflow-overview)  
+   - [Prefect Scheduling & Monitoring](#62-prefect-scheduling--monitoring)  
+   - [Why Prefect?](#63-why-prefect)  
+7. [Configuration](#7-configuration)  
+   - [Environment Variables](#71-environment-variables)  
+   - [config.json](#72-configjson)  
+8. [Integration with mlops-serve](#8-integration-with-mlops-serve)  
+   - [Model Sync via S3](#model-sync-via-s3)  
+   - [Data/Prediction Exchange](#dataprediction-exchange)  
+9. [Testing](#9-testing)  
+   - [How to run tests](#91-how-to-run-tests)  
+   - [Test Coverage & Mock Strategy](#test-coverage--mock-strategy)  
+10. [FAQ](#10-faq)  
+11. [Maintainers & Contact](#11-maintainers--contact)
 
-- Automated collection of GitHub issues (supports both full and incremental modes)
-- Flexible, modular feature engineering for issue data
-- Incremental feature merging for seamless model updates
-- Automated hyperparameter tuning and model training (XGBoost)
-- Model versioning and export to AWS S3
-- Workflow orchestration and monitoring with Prefect
-- Integrated CI pipeline by GitHub Actions for automated testing and validation
-- Easy local or cloud deployment (no Docker required)
-- Comprehensive unit and integration tests for all key modules
+</details>
 
-## 3. Tech Stack
+# Issue-Copilot — Training & Model Lifecycle
 
-- Python 3.9
-- Prefect 
-- XGBoost 
-- AWS S3 
-- pytest, moto 
-- GitHub Actions (CI)
+Predict whether a **huggingface/transformers** issue will close in **7 days**,  
+with an automated pipeline that **fetches - features - tunes - trains - pushes to S3**.
 
-## 4. System Architecture
+> **Serving repo →**  ↗️ [`mlops-serve`](https://github.com/Arsney091289421/mlops-serve)
+
+## Features
+
+| Category | What you get |
+|----------|--------------|
+| **Data ingest** | Full & incremental GitHub API crawler |
+| **Feature engineering** | 10+ issue meta features (length, labels, comments) |
+| **Auto-tuning & train** | Optuna - XGBoost (30 trials) • **AUC ≈ 0.65** |
+| **Versioning & export** | `latest_model.json` + `history/` - **S3** |
+| **Orchestration** | Prefect DAG, alert when **AUC < 0.60** |
+| **CI** | `pytest + moto` mocks • GitHub Actions |
+
+## Tech Stack
+`Python 3.9` • **Prefect 2** • **XGBoost** • AWS S3 • `pytest + moto` • **GitHub Actions**
+
+## System Architecture
 
 ![System Architecture](docs/architecture.svg)
 
@@ -64,6 +89,7 @@ This repository provides a fully automated pipeline for collecting, processing, 
    ```bash
    pip install -r requirements.txt
    pip install -e .
+   # enables import via package name without modifying paths
    ```
 
 3. **Configure environment variables**
@@ -132,6 +158,7 @@ Use Prefect’s local server for free scheduling, monitoring, and alerting.
 
    *Use the UI “Deployments” tab to set up schedules (e.g. daily at 5 AM).*
 
+
 > **Note:** **Ensure your machine doesn’t sleep.** Recommended: desktop or cloud server.
 > macOS: use Amphetamine / `pmset`; Windows: set power options to “never sleep”.
 
@@ -150,3 +177,85 @@ else:
 ```
 
 Any failure shows as a red run in the UI, with full logs.
+
+### 6.3 Why Prefect?
+
+This project uses Prefect to manage a multi-step ML training pipeline with task dependencies, monitoring, and alerting (e.g. low AUC).
+
+The downstream [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo focuses on model serving, using cron to run daily batch predictions — no orchestration required.
+
+
+## 7. Configuration
+
+### 7.1 Environment Variables
+
+Set all variables in `.env` (see `.env.example`).
+
+| Variable               | Required | Default     | Description                                 |
+|------------------------|----------|-------------|---------------------------------------------|
+| `GITHUB_TOKEN`         | Yes      | —           | GitHub token (`public_repo` scope)          |
+| `DATA_BASE_DIR`        | Yes      | `./data`    | Base dir for data, features, and params     |
+| `MODEL_DIR`            | Yes      | `./models`  | Where to save trained models                |
+| `AWS_ACCESS_KEY_ID`    | Yes\*    | —           | AWS key for S3 (or use EC2 IAM role)        |
+| `AWS_SECRET_ACCESS_KEY`| Yes\*    | —           | AWS secret for S3                           |
+| `AWS_DEFAULT_REGION`   | Yes\*    | —           | AWS region                                  |
+| `MODEL_BUCKET`         | Yes      | —           | S3 bucket for model upload                  |
+> \*AWS credentials not required if using EC2 with IAM role.
+
+**Notes:**
+- `features/` and `params/` are stored under `${DATA_BASE_DIR}/`
+- Default folders will be auto-created if missing
+
+---
+
+### 7.2 `config.json` 
+
+```json
+{
+  "n_trials": 30
+}
+````
+
+* `n_trials`: Number of Optuna tuning trials
+  (higher = better tuning, more compute)
+  
+## 8. Integration with mlops-serve
+
+### Model Sync via S3
+
+After training, `latest_model.json` (saved to `model/`）and a versioned snapshot (saved to `model/history/`) are uploaded to S3.  
+The [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo fetches the latest model from S3 to serve predictions.
+
+### Data/Prediction Exchange
+
+Inference results from [mlops-serve](https://github.com/Arsney091289421/mlops-serve) are also pushed to S3, enabling decoupled cloud-based communication between training and serving pipelines.
+
+## 9. Testing
+### 9.1 How to run tests
+
+ ```bash
+pytest tests/
+```
+#### Test Coverage & Mock Strategy
+
+- Smoke test ensures key modules load correctly (`data_utils`, `model_utils`, `s3_utils`)
+- Unit tests cover data processing, model training, and S3 logic with small mock datasets
+- All tests use `pytest` fixtures and `tmp_path` for isolated temp files
+- S3 interactions are fully mocked using [moto](https://github.com/spulec/moto); no real AWS needed
+
+## 10. FAQ
+
+**S3 returns 403 / Access Denied?**  
+→ Check AWS credentials and S3 permissions. On EC2, prefer IAM role (no `.env` secrets needed).
+
+**GitHub token fails to fetch issues?**  
+→ Ensure `GITHUB_TOKEN` has `public_repo` scope and is valid.
+
+**No flow or scheduling error in Prefect UI?**  
+→ Create a local work pool and start an agent. Prefect Cloud free tier does **not** support work pools — use `prefect server start` locally.
+
+## 11. Maintainers & Contact
+
+- Maintainer: [Arsney091289421](https://github.com/Arsney091289421)
+- Email: leearseny3@gmail.com
+- Feedback and issues are welcome—please use [GitHub Issues](https://github.com/Arsney091289421/mlops-serve/issues)
