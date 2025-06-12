@@ -225,3 +225,9 @@ pytest tests/
 
 **No flow or scheduling error in Prefect UI?**  
 → Create a local work pool and start an agent. Prefect Cloud free tier does **not** support work pools — use `prefect server start` locally.
+
+## 11. Maintainers & Contact
+
+- Maintainer: [Arsney091289421](https://github.com/Arsney091289421)
+- Email: leearseny3@gmail.com
+- Feedback and issues are welcome—please use [GitHub Issues](https://github.com/Arsney091289421/mlops-serve/issues)
