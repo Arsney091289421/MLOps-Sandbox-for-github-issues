@@ -1,3 +1,27 @@
+## Table of Contents
+
+1. [Project Overview](#1-project-overview)  
+2. [Features](#2-features)  
+3. [Tech Stack](#3-tech-stack)  
+4. [System Architecture](#4-system-architecture)  
+5. [Quick Start](#5-quick-start)  
+   - [Prerequisites](#51-prerequisites)  
+   - [Deployment](#52-deployment)  
+6. [Workflow & Automation](#6-workflow--automation)  
+   - [Full Workflow Overview](#61-full-workflow-overview)  
+   - [Prefect Scheduling & Monitoring](#62-prefect-scheduling--monitoring)  
+   - [Why Prefect?](#63-why-prefect)  
+7. [Configuration](#7-configuration)  
+   - [Environment Variables](#71-environment-variables)  
+   - [config.json](#72-configjson)  
+8. [Integration with mlops-serve](#8-integration-with-mlops-serve)  
+   - [Model Sync via S3](#model-sync-via-s3)  
+   - [Data/Prediction Exchange](#dataprediction-exchange)  
+9. [Testing](#9-testing)  
+   - [How to run tests](#91-how-to-run-tests)  
+   - [Test Coverage & Mock Strategy](#test-coverage--mock-strategy)  
+10. [FAQ](#10-faq)  
+11. [Maintainers & Contact](#11-maintainers--contact)
 
 ## 1. Project Overview
 
