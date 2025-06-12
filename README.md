@@ -205,7 +205,7 @@ Inference results from [mlops-serve](https://github.com/Arsney091289421/mlops-se
 ## 9. Testing
 #### How to run tests
 
-     ```bash
+ ```bash
 pytest tests/
 ```
 #### Test Coverage & Mock Strategy
