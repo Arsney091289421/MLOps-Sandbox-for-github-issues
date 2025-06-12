@@ -86,6 +86,7 @@ This repo builds a pipeline to predict whether an issue from the [transformers](
    ```bash
    pip install -r requirements.txt
    pip install -e .
+   # enables import via package name without modifying paths
    ```
 
 3. **Configure environment variables**
