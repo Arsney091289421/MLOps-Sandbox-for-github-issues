@@ -156,3 +156,37 @@ This project uses Prefect to manage a multi-step ML training pipeline with task 
 
 The downstream [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo focuses on model serving, using cron to run daily batch predictions — no orchestration required.
 
+
+## 7. Configuration
+
+### 7.1 Environment Variables
+
+Set all variables in `.env` (see `.env.example`).
+
+| Variable               | Required | Default     | Description                                 |
+|------------------------|----------|-------------|---------------------------------------------|
+| `GITHUB_TOKEN`         | Yes      | —           | GitHub token (`public_repo` scope)          |
+| `DATA_BASE_DIR`        | Yes      | `./data`    | Base dir for data, features, and params     |
+| `MODEL_DIR`            | Yes      | `./models`  | Where to save trained models                |
+| `AWS_ACCESS_KEY_ID`    | Yes\*    | —           | AWS key for S3 (or use EC2 IAM role)        |
+| `AWS_SECRET_ACCESS_KEY`| Yes\*    | —           | AWS secret for S3                           |
+| `AWS_DEFAULT_REGION`   | Yes\*    | —           | AWS region                                  |
+| `MODEL_BUCKET`         | Yes      | —           | S3 bucket for model upload                  |
+> \*AWS credentials not required if using EC2 with IAM role.
+
+**Notes:**
+- `features/` and `params/` are stored under `${DATA_BASE_DIR}/`
+- Default folders will be auto-created if missing
+
+---
+
+### 7.2 `config.json` Example
+
+```json
+{
+  "n_trials": 30
+}
+````
+
+* `n_trials`: Number of Optuna tuning trials
+  (higher = better tuning, more compute)
