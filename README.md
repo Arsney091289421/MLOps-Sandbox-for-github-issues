@@ -88,6 +88,8 @@ This repository provides a fully automated pipeline for collecting, processing, 
    # This will execute the entire Prefect workflow: incremental data fetch, feature engineering, feature merging, hyperparameter tuning, model training, and model export to S3.
    ```
 
+## 6. Workflow & Automation
+
 ### 6.1 Full Workflow Details
 
 #### Workflow Overview
