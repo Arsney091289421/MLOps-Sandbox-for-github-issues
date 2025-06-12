@@ -1,7 +1,7 @@
 
 ## 1. Project Overview
 
-This repository provides a fully automated pipeline for collecting, processing, and modeling GitHub issues, with the goal of predicting whether an issue will be closed within 7 days. It is designed to run locally or in the cloud, supporting incremental data updates, automated model training, and model export to AWS S3.
+This repo builds a pipeline to predict whether an issue from the [transformers](https://github.com/huggingface/transformers) GitHub repo will be closed within 7 days — with automated data collection, model training, and S3 export.
 
 > **Note:** This project works together with [mlops-serve](https://github.com/Arsney091289421/mlops-serve),  
 > which handles model inference, prediction serving, and result upload on AWS EC2.  
