@@ -195,7 +195,7 @@ Set all variables in `.env` (see `.env.example`).
 
 ### 8.1 Model Sync via S3
 
-After training, `latest_model.json` (saved to `model`）and a versioned snapshot (saved to `model/history/`) are uploaded to S3.  
+After training, `latest_model.json` (saved to `model/`）and a versioned snapshot (saved to `model/history/`) are uploaded to S3.  
 The [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo fetches the latest model from S3 to serve predictions.
 
 ### 8.2 Data/Prediction Exchange
