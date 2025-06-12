@@ -119,3 +119,52 @@ Each step is modularized as an individual Python script and Prefect task.
 
 7. **Prefect UI monitoring:**  
    All workflow runs and AUC alerts can be visualized in Prefect UI (if enabled).
+### 6.2 Prefect Scheduling & Monitoring
+
+#### Local Prefect Setup
+
+Use Prefect’s local server for free scheduling, monitoring, and alerting.
+
+1. **Start local server** (once):
+
+   ```bash
+   prefect server start
+   # UI at http://127.0.0.1:4200
+   ```
+
+2. **Create a work pool**:
+
+   ```bash
+   prefect work-pool create my-local-pool --type process
+   ```
+
+3. **Start a local agent**:
+
+   ```bash
+   prefect agent start -p my-local-pool
+   ```
+
+4. **Run your flow**:
+   Running your `@flow` function (e.g. in `main_flow.py`) will auto-register it.
+   You can then trigger it or schedule it via the UI.
+
+   *💡Use the UI “Deployments” tab to set up schedules (e.g. daily at 5 AM).*
+
+> **Ensure your machine doesn’t sleep.** Recommended: desktop or cloud server.
+> macOS: use Amphetamine / `pmset`; Windows: set power options to “never sleep”.
+
+#### AUC Threshold Alerting
+
+In hyperparameter search, an alert triggers if AUC drops below a threshold:
+
+```python
+auc_alert_threshold = 0.6
+
+if auc < auc_alert_threshold:
+    logger.error(f"[ALERT] Best AUC dropped below threshold! Current: {auc}")
+    raise ValueError(f"Best AUC dropped below {auc_alert_threshold}: {auc}")
+else:
+    logger.info(f"Best AUC: {auc}")
+```
+
+Any failure shows as a red run in the UI, with full logs.
