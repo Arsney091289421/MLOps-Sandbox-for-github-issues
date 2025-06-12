@@ -132,6 +132,7 @@ Use Prefect’s local server for free scheduling, monitoring, and alerting.
 
    *Use the UI “Deployments” tab to set up schedules (e.g. daily at 5 AM).*
 
+
 > **Note:** **Ensure your machine doesn’t sleep.** Recommended: desktop or cloud server.
 > macOS: use Amphetamine / `pmset`; Windows: set power options to “never sleep”.
 
