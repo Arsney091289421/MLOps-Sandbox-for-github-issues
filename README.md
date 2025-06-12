@@ -200,4 +200,4 @@ The [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo fetches t
 
 ### 8.2 Data/Prediction Exchange
 
-Inference results from mlops-serve are also pushed to S3, enabling decoupled cloud-based communication between training and serving pipelines.
+Inference results from [mlops-serve](https://github.com/Arsney091289421/mlops-serve) are also pushed to S3, enabling decoupled cloud-based communication between training and serving pipelines.
