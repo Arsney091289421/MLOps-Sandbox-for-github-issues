@@ -12,3 +12,4 @@ S3_KEY = "model/latest_model.json"
 
 if __name__ == "__main__":
     upload_model_to_s3(MODEL_FILE, BUCKET_NAME, S3_KEY, with_history=True)
+    
