@@ -193,17 +193,17 @@ Set all variables in `.env` (see `.env.example`).
   
 ## 8. Integration with mlops-serve
 
-#### Model Sync via S3
+### Model Sync via S3
 
 After training, `latest_model.json` (saved to `model/`）and a versioned snapshot (saved to `model/history/`) are uploaded to S3.  
 The [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo fetches the latest model from S3 to serve predictions.
 
-#### Data/Prediction Exchange
+### Data/Prediction Exchange
 
 Inference results from [mlops-serve](https://github.com/Arsney091289421/mlops-serve) are also pushed to S3, enabling decoupled cloud-based communication between training and serving pipelines.
 
 ## 9. Testing
-#### How to run tests
+### 9.1 How to run tests
 
  ```bash
 pytest tests/
