@@ -90,35 +90,17 @@ This repository provides a fully automated pipeline for collecting, processing, 
 
 ## 6. Workflow & Automation
 
-### 6.1 Full Workflow Details
+### 6.1 Full Workflow Overview
 
-#### Workflow Overview
+Orchestrated via `main_flow.py` using Prefect. Each step is a modular task:
 
-The entire pipeline is orchestrated via `main_flow.py` using Prefect.  
-Each step is modularized as an individual Python script and Prefect task.
+1. Fetch closed GitHub issues  
+2. Extract & merge features  
+3. Run Optuna for best XGBoost params  
+4. Train final model  
+5. Upload model to S3  
+6. Monitor runs & AUC via Prefect UI
 
-#### Main Workflow Steps
-
-1. **Fetch closed issues:**  
-   Incrementally collect new closed issues from the target GitHub repository.
-
-2. **Generate features:**  
-   Extract features for each closed issue.
-
-3. **Merge features:**  
-   Merge new features with the full historical feature set (de-duplication).
-
-4. **Search best parameters:**  
-   Perform hyperparameter search (Optuna) for XGBoost, based on latest feature set.
-
-5. **Train model:**  
-   Train the XGBoost model with the updated features and best-found parameters.
-
-6. **Upload model to S3:**  
-   Save and upload the trained model artifact (`latest_model.json`) to the configured S3 bucket.
-
-7. **Prefect UI monitoring:**  
-   All workflow runs and AUC alerts can be visualized in Prefect UI (if enabled).
 ### 6.2 Prefect Scheduling & Monitoring
 
 #### Local Prefect Setup
