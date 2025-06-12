@@ -190,3 +190,14 @@ Set all variables in `.env` (see `.env.example`).
 
 * `n_trials`: Number of Optuna tuning trials
   (higher = better tuning, more compute)
+  
+## 8. Integration with mlops-serve
+
+### 8.1 Model Sync via S3
+
+After training, `latest_model.json` is uploaded to S3.  
+The [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo fetches this model to serve predictions.
+
+### 8.2 Data/Prediction Exchange
+
+Inference results from mlops-serve are also pushed to S3, enabling decoupled cloud-based communication between training and serving pipelines.
