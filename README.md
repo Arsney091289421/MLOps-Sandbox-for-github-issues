@@ -201,3 +201,17 @@ The [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo fetches t
 ### 8.2 Data/Prediction Exchange
 
 Inference results from [mlops-serve](https://github.com/Arsney091289421/mlops-serve) are also pushed to S3, enabling decoupled cloud-based communication between training and serving pipelines.
+
+## 9. Testing
+### 9.1 How to run tests
+
+   ```bash
+pytest tests/
+```
+### 9.2 Test Coverage & Mock Strategy
+
+- Smoke test ensures key modules load correctly (`data_utils`, `model_utils`, `s3_utils`)
+- Unit tests cover data processing, model training, and S3 logic with small mock datasets
+- All tests use `pytest` fixtures and `tmp_path` for isolated temp files
+- S3 interactions are fully mocked using [moto](https://github.com/spulec/moto); no real AWS needed
+
