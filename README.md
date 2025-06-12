@@ -151,3 +151,10 @@ else:
 ```
 
 Any failure shows as a red run in the UI, with full logs.
+
+### 6.3 Why Prefect?
+
+This project uses Prefect to manage a multi-step ML training pipeline with task dependencies, monitoring, and alerting (e.g. low AUC).
+
+The downstream [mlops-serve](https://github.com/Arsney091289421/mlops-serve) repo focuses on model serving, using cron to run daily batch predictions — no orchestration required.
+
