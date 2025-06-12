@@ -9,15 +9,13 @@ This repository provides a fully automated pipeline for collecting, processing, 
 
 ## 2. Features
 
-- Automated collection of GitHub issues (supports both full and incremental modes)
-- Flexible, modular feature engineering for issue data
-- Incremental feature merging for seamless model updates
-- Automated hyperparameter tuning and model training (XGBoost)
-- Model versioning and export to AWS S3
-- Workflow orchestration and monitoring with Prefect
-- Integrated CI pipeline for automated testing and validation
-- Easy local or cloud deployment (no Docker required)
-- Comprehensive unit and integration tests for all key modules
+- Automated GitHub issue collection (full & incremental)
+- Modular feature engineering and merging
+- Hyperparameter tuning + XGBoost model training
+- Model versioning and S3 export
+- Prefect-based orchestration and monitoring
+- CI pipeline with unit/integration tests
+- Deployable locally or in the cloud (no Docker needed)
 
 ## 3. Tech Stack
 
