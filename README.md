@@ -2,6 +2,11 @@
 
 ## Table of Contents
 
+<details>
+<summary>Click to expand</summary>
+
+<br>
+
 1. [Project Overview](#1-project-overview)  
 2. [Features](#2-features)  
 3. [Tech Stack](#3-tech-stack)  
@@ -25,36 +30,30 @@
 10. [FAQ](#10-faq)  
 11. [Maintainers & Contact](#11-maintainers--contact)
 
-## 1. Project Overview
+</details>
 
-This repository provides a fully automated pipeline for collecting, processing, and modeling GitHub issues, with the goal of predicting whether an issue will be closed within 7 days. It is designed to run locally or in the cloud, supporting incremental data updates, automated model training, and model export to AWS S3.
+# Issue-Copilot — Training & Model Lifecycle
 
-> **Note:** This project works together with [mlops-serve](https://github.com/Arsney091289421/mlops-serve),  
-> which handles model inference, prediction serving, and result upload on AWS EC2.  
-> This repo focuses on data collection, feature engineering, and model lifecycle automation.
+Predict whether a **huggingface/transformers** issue will close in **7 days**,  
+with an automated pipeline that **fetches - features - tunes - trains - pushes to S3**.
 
-## 2. Features
+> **Serving repo →**  ↗️ [`mlops-serve`](https://github.com/Arsney091289421/mlops-serve)
 
-- Automated collection of GitHub issues (supports both full and incremental modes)
-- Flexible, modular feature engineering for issue data
-- Incremental feature merging for seamless model updates
-- Automated hyperparameter tuning and model training (XGBoost)
-- Model versioning and export to AWS S3
-- Workflow orchestration and monitoring with Prefect
-- Integrated CI pipeline for automated testing and validation
-- Easy local or cloud deployment (no Docker required)
-- Comprehensive unit and integration tests for all key modules
+## Features
 
-## 3. Tech Stack
+| Category | What you get |
+|----------|--------------|
+| **Data ingest** | Full & incremental GitHub API crawler |
+| **Feature engineering** | 10+ issue meta features (length, labels, comments) |
+| **Auto-tuning & train** | Optuna - XGBoost (30 trials) • **AUC ≈ 0.65** |
+| **Versioning & export** | `latest_model.json` + `history/` - **S3** |
+| **Orchestration** | Prefect DAG, alert when **AUC < 0.60** |
+| **CI** | `pytest + moto` mocks • GitHub Actions |
 
-- Python 3.9
-- Prefect 
-- XGBoost 
-- AWS S3 
-- pytest, moto 
-- GitHub Actions (CI)
+## Tech Stack
+`Python 3.9` • **Prefect 2** • **XGBoost** • AWS S3 • `pytest + moto` • **GitHub Actions**
 
-## 4. System Architecture
+## System Architecture
 
 ![System Architecture](docs/architecture.svg)
 
