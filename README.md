@@ -35,20 +35,21 @@ This repo builds a pipeline to predict whether an issue from the [transformers](
 
 ## 2. Features
 
-- Automated GitHub issue collection (full & incremental)
-- Modular feature engineering and merging
-- Hyperparameter tuning + XGBoost model training
-- Model versioning and S3 export
-- Prefect-based orchestration and monitoring
-- CI pipeline with unit/integration tests
-- Deployable locally or in the cloud (no Docker needed)
+| Category | What you get |
+|----------|--------------|
+| **Daily batch inference** | `cron` *(or Prefect)* job on EC2 |
+| **Model sync** | auto-download newest model from **S3** (+ history keep) |
+| **Real-time API** | `/predict` & `/export` endpoints (*FastAPI + Swagger*) |
+| **Observability** | Prometheus metrics → Grafana dashboard (P95, error-rate) |
+| **One-command deploy** | `docker compose up -d` ／ GitHub Actions → **SSM** Blue-Green |
+| **Tested** | `pytest` + **moto** S3 mocks in CI |
 
 ## 3. Tech Stack
 
--`Python 3.9` · **FastAPI** · **XGBoost** · Docker / docker-compose  
--**AWS S3 · EC2 · SSM · IAM**  
--**Prometheus & Pushgateway • Grafana**  
-=**GitHub Actions** (CI + CD) • `pytest` · `moto`
+- `Python 3.9` · **FastAPI** · **XGBoost** · Docker / docker-compose  
+- **AWS S3 · EC2 · SSM · IAM**  
+- **Prometheus & Pushgateway • Grafana**  
+- **GitHub Actions** (CI + CD) • `pytest` · `moto`
 
 ## 4. System Architecture
 
