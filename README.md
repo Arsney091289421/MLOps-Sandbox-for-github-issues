@@ -45,12 +45,10 @@ This repo builds a pipeline to predict whether an issue from the [transformers](
 
 ## 3. Tech Stack
 
-- Python 3.9
-- Prefect 
-- XGBoost 
-- AWS S3 
-- pytest, moto 
-- GitHub Actions (CI)
+-`Python 3.9` · **FastAPI** · **XGBoost** · Docker / docker-compose  
+-**AWS S3 · EC2 · SSM · IAM**  
+-**Prometheus & Pushgateway • Grafana**  
+=**GitHub Actions** (CI + CD) • `pytest` · `moto`
 
 ## 4. System Architecture
 
