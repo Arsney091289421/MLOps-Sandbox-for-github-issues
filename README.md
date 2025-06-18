@@ -1,3 +1,5 @@
+ ![CI](https://github.com/Arsney091289421/MLOps-Sandbox-for-github-issues/actions/workflows/ci.yml/badge.svg)
+
 ## Table of Contents
 
 1. [Project Overview](#1-project-overview)  
