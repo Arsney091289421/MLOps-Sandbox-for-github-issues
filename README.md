@@ -1,4 +1,39 @@
+# Issue-Copilot — Training & Model Lifecycle
+
  ![CI](https://github.com/Arsney091289421/MLOps-Sandbox-for-github-issues/actions/workflows/ci.yml/badge.svg)
+ 
+Predict whether a **huggingface/transformers** issue will close in **7 days**,  
+with an automated pipeline that **fetches - features - tunes - trains - pushes to S3**.
+
+> **Serving repo:**  [`mlops-serve`](https://github.com/Arsney091289421/mlops-serve)
+
+## Features
+
+| Category | What you get |
+|----------|--------------|
+| **Data ingest** | Full & incremental GitHub API crawler |
+| **Feature engineering** | 10+ issue meta features (length, labels, comments) |
+| **Auto-tuning & train** | Optuna - XGBoost (30 trials) • **AUC ≈ 0.65** |
+| **Versioning & export** | `latest_model.json` + `history/` - **S3** |
+| **Orchestration** | Prefect DAG, alert when **AUC < 0.60** |
+| **CI** | `pytest + moto` mocks • GitHub Actions |
+
+### Workflow & Automation
+
+<img src="docs/prefect_timeline_thumb.png" width="600">
+
+<details><summary>Flow run log &amp; AUC</summary>
+
+![](docs/prefect_log_auc.png)
+
+</details>
+
+## Tech Stack
+`Python 3.9` • **Prefect 2** • **XGBoost** • AWS S3 • `pytest + moto` • **GitHub Actions**
+
+## System Architecture
+
+![System Architecture](docs/architecture.svg)
 
 ## Table of Contents
 
@@ -31,31 +66,6 @@
 11. [Maintainers & Contact](#11-maintainers--contact)
 
 </details>
-
-# Issue-Copilot — Training & Model Lifecycle
-
-Predict whether a **huggingface/transformers** issue will close in **7 days**,  
-with an automated pipeline that **fetches - features - tunes - trains - pushes to S3**.
-
-> **Serving repo →**  ↗️ [`mlops-serve`](https://github.com/Arsney091289421/mlops-serve)
-
-## Features
-
-| Category | What you get |
-|----------|--------------|
-| **Data ingest** | Full & incremental GitHub API crawler |
-| **Feature engineering** | 10+ issue meta features (length, labels, comments) |
-| **Auto-tuning & train** | Optuna - XGBoost (30 trials) • **AUC ≈ 0.65** |
-| **Versioning & export** | `latest_model.json` + `history/` - **S3** |
-| **Orchestration** | Prefect DAG, alert when **AUC < 0.60** |
-| **CI** | `pytest + moto` mocks • GitHub Actions |
-
-## Tech Stack
-`Python 3.9` • **Prefect 2** • **XGBoost** • AWS S3 • `pytest + moto` • **GitHub Actions**
-
-## System Architecture
-
-![System Architecture](docs/architecture.svg)
 
 ## 5. Quick Start
 
