@@ -27,6 +27,7 @@ with an automated pipeline that **fetches - features - tunes - trains - pushes t
 ![](docs/prefect_log_auc.png)
 
 </details>
+
 ## Tech Stack
 `Python 3.9` • **Prefect 2** • **XGBoost** • AWS S3 • `pytest + moto` • **GitHub Actions**
 
