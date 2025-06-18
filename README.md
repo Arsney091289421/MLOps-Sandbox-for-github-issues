@@ -5,7 +5,7 @@
 Predict whether a **huggingface/transformers** issue will close in **7 days**,  
 with an automated pipeline that **fetches - features - tunes - trains - pushes to S3**.
 
-> **Serving repo →**  ↗ [`mlops-serve`](https://github.com/Arsney091289421/mlops-serve)
+> **Serving repo:**  [`mlops-serve`](https://github.com/Arsney091289421/mlops-serve)
 
 ## Features
 
