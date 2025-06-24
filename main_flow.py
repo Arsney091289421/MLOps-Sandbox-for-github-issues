@@ -4,6 +4,7 @@ from utils.model_utils import load_config, search_best_params, train_xgboost
 from utils.s3_utils import upload_model_to_s3
 import os
 from dotenv import load_dotenv
+import time 
 
 load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -93,7 +94,10 @@ def upload_model_to_s3_task(
     upload_model_to_s3(local_model_file, bucket_name, s3_key, with_history)
 
 @flow
-def main_flow(date=None):
+def main_flow(date=None, flow_latency_threshold=900):  
+    logger = get_run_logger()
+    start = time.time()
+
     fetch_closed_issues_task(date)
     generate_features_task(date)
     merge_features_task()
@@ -101,5 +105,8 @@ def main_flow(date=None):
     train_xgboost_task()
     upload_model_to_s3_task()
 
-if __name__ == "__main__":
-    main_flow()
+    duration = time.time() - start
+    logger.info(f"[FLOW-TIMING] main_flow total duration: {duration:.2f} seconds")
+
+    if duration > flow_latency_threshold:
+        logger.warning(f"[FLOW-ALERT] Total flow duration exceeded {flow_latency_threshold}s: {duration:.2f}s")
