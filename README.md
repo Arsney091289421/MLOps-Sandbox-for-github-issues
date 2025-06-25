@@ -1,6 +1,6 @@
 # Issue-Copilot — Training & Model Lifecycle
 
- ![CI](https://github.com/Arsney091289421/MLOps-Sandbox-for-github-issues/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/Arsney091289421/MLOps-Sandbox-for-github-issues/actions/workflows/ci.yml/badge.svg)](https://github.com/Arsney091289421/MLOps-Sandbox-for-github-issues/actions/workflows/ci.yml)
  
 Predict whether a **huggingface/transformers** issue will close in **7 days**,  
 with an automated pipeline that **fetches - features - tunes - trains - pushes to S3**.
