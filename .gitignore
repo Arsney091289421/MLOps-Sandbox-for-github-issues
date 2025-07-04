@@ -12,6 +12,7 @@ __pycache__/
 # venv and env files
 .venv/
 .env
+.venv-airflow/
 
 # Build
 *.egg-info/
