@@ -1,0 +1,27 @@
+/Users/daniel/Documents/projects/MLOps-Sandbox-for-github-issues/.venv-airflow/lib/python3.9/site-packages/flask_limiter/extension.py:337 UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+[2025-07-04 00:07:12 -0400] [23220] [INFO] Starting gunicorn 22.0.0
+[2025-07-04 00:07:12 -0400] [23220] [INFO] Listening at: http://0.0.0.0:8080 (23220)
+[2025-07-04 00:07:12 -0400] [23220] [INFO] Using worker: sync
+[2025-07-04 00:07:12 -0400] [23228] [INFO] Booting worker with pid: 23228
+[2025-07-04 00:07:12 -0400] [23229] [INFO] Booting worker with pid: 23229
+[2025-07-04 00:07:12 -0400] [23230] [INFO] Booting worker with pid: 23230
+[2025-07-04 00:07:12 -0400] [23231] [INFO] Booting worker with pid: 23231
+  ____________       _____________
+ ____    |__( )_________  __/__  /________      __
+____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+ _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+Running the Gunicorn Server with:
+Workers: 4 sync
+Host: 0.0.0.0:8080
+Timeout: 120
+Logfiles: - -
+Access Logformat: 
+=================================================================
+[[34m2025-07-04T00:08:01.932-0400[0m] {[34mwebserver_command.py:[0m430} INFO[0m - Received signal: 15. Closing gunicorn.[0m
+[2025-07-04 00:08:01 -0400] [23220] [INFO] Handling signal: term
+[2025-07-04 00:08:01 -0400] [23228] [INFO] Worker exiting (pid: 23228)
+[2025-07-04 00:08:01 -0400] [23230] [INFO] Worker exiting (pid: 23230)
+[2025-07-04 00:08:01 -0400] [23231] [INFO] Worker exiting (pid: 23231)
+[2025-07-04 00:08:01 -0400] [23229] [INFO] Worker exiting (pid: 23229)
+[2025-07-04 00:08:02 -0400] [23220] [INFO] Shutting down: Master

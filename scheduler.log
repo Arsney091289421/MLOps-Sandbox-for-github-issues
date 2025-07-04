@@ -1,0 +1,31 @@
+  ____________       _____________
+ ____    |__( )_________  __/__  /________      __
+____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+ _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+[[34m2025-07-04T00:07:11.054-0400[0m] {[34mtask_context_logger.py:[0m63} INFO[0m - Task context logging is enabled[0m
+[[34m2025-07-04T00:07:11.055-0400[0m] {[34mexecutor_loader.py:[0m235} INFO[0m - Loaded executor: SequentialExecutor[0m
+[[34m2025-07-04T00:07:11.126-0400[0m] {[34mscheduler_job_runner.py:[0m796} INFO[0m - Starting the scheduler[0m
+[[34m2025-07-04T00:07:11.126-0400[0m] {[34mscheduler_job_runner.py:[0m803} INFO[0m - Processing each file at most -1 times[0m
+[[34m2025-07-04T00:07:11.130-0400[0m] {[34mmanager.py:[0m170} INFO[0m - Launched DagFileProcessorManager with pid: 23223[0m
+[[34m2025-07-04T00:07:11.132-0400[0m] {[34mscheduler_job_runner.py:[0m1595} INFO[0m - Adopting or resetting orphaned tasks for active dag runs[0m
+[[34m2025-07-04T00:07:11.142-0400[0m] {[34mscheduler_job_runner.py:[0m1618} INFO[0m - Marked 1 SchedulerJob instances as failed[0m
+[2025-07-04 00:07:11 -0400] [23222] [INFO] Starting gunicorn 22.0.0
+[2025-07-04 00:07:11 -0400] [23222] [INFO] Listening at: http://[::]:8793 (23222)
+[2025-07-04 00:07:11 -0400] [23222] [INFO] Using worker: sync
+[2025-07-04 00:07:11 -0400] [23225] [INFO] Booting worker with pid: 23225
+[2025-07-04 00:07:11 -0400] [23226] [INFO] Booting worker with pid: 23226
+[[34m2025-07-04T00:07:11.887-0400[0m] {[34msettings.py:[0m60} INFO[0m - Configured default timezone UTC[0m
+[2025-07-04T00:07:11.896-0400] {manager.py:393} WARNING - Because we cannot use more than 1 thread (parsing_processes = 2) when using sqlite. So we set parallelism to 1.
+[[34m2025-07-04T00:08:01.906-0400[0m] {[34mscheduler_job_runner.py:[0m256} INFO[0m - Exiting gracefully upon receiving signal 15[0m
+[[34m2025-07-04T00:08:02.212-0400[0m] {[34mprocess_utils.py:[0m132} INFO[0m - Sending Signals.SIGTERM to group 23223. PIDs of all processes in the group: [][0m
+[[34m2025-07-04T00:08:02.212-0400[0m] {[34mprocess_utils.py:[0m87} INFO[0m - Sending the signal Signals.SIGTERM to group 23223[0m
+[[34m2025-07-04T00:08:02.212-0400[0m] {[34mprocess_utils.py:[0m101} INFO[0m - Sending the signal Signals.SIGTERM to process 23223 as process group is missing.[0m
+[[34m2025-07-04T00:08:02.222-0400[0m] {[34mprocess_utils.py:[0m132} INFO[0m - Sending Signals.SIGTERM to group 23223. PIDs of all processes in the group: [][0m
+[[34m2025-07-04T00:08:02.222-0400[0m] {[34mprocess_utils.py:[0m87} INFO[0m - Sending the signal Signals.SIGTERM to group 23223[0m
+[[34m2025-07-04T00:08:02.222-0400[0m] {[34mprocess_utils.py:[0m101} INFO[0m - Sending the signal Signals.SIGTERM to process 23223 as process group is missing.[0m
+[[34m2025-07-04T00:08:02.222-0400[0m] {[34mscheduler_job_runner.py:[0m872} INFO[0m - Exited execute loop[0m
+[2025-07-04 00:08:02 -0400] [23222] [INFO] Handling signal: term
+[2025-07-04 00:08:02 -0400] [23225] [INFO] Worker exiting (pid: 23225)
+[2025-07-04 00:08:02 -0400] [23226] [INFO] Worker exiting (pid: 23226)
+[2025-07-04 00:08:02 -0400] [23222] [INFO] Shutting down: Master
