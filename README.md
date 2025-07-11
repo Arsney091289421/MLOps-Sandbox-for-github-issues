@@ -25,7 +25,7 @@ To justify the choice of supervised XGBoost instead of purely unsupervised appro
 | Model            | F1 Score | AUC  |
 |------------------|----------|------|
 | Isolation Forest | 0.17     | 0.47 |
-| XGBoost          | ~0.65    | ~0.65 |
+| XGBoost          | ~0.38    | ~0.65 |
 
 The Isolation Forest baseline only achieves **F1 ≈ 0.17** and **AUC ≈ 0.47**, showing that it is close to random guess level.  
 In contrast, our tuned XGBoost model reaches **AUC ≈ 0.65**, confirming that leveraging supervised learning and structured features is essential for accurate prediction of issue closure within 7 days.
