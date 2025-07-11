@@ -18,6 +18,18 @@ with an automated pipeline that **fetches - features - tunes - trains - pushes t
 | **Orchestration** | Prefect DAG, alert when **AUC < 0.60** |
 | **CI** | `pytest + moto` mocks • GitHub Actions |
 
+### Baseline Comparison
+
+To justify the choice of supervised XGBoost instead of purely unsupervised approaches, we also ran an Isolation Forest baseline:
+
+| Model            | F1 Score | AUC  |
+|------------------|----------|------|
+| Isolation Forest | 0.17     | 0.47 |
+| XGBoost          | ~0.65    | ~0.65 |
+
+The Isolation Forest baseline only achieves **F1 ≈ 0.17** and **AUC ≈ 0.47**, showing that it is close to random guess level.  
+In contrast, our tuned XGBoost model reaches **AUC ≈ 0.65**, confirming that leveraging supervised learning and structured features is essential for accurate prediction of issue closure within 7 days.
+
 ### Workflow & Automation
 
 <img src="docs/prefect_timeline_thumb.png" width="600">
