@@ -12,6 +12,7 @@ __pycache__/
 # venv and env files
 .venv/
 .env
+.venv-airflow
 
 # Build
 *.egg-info/
@@ -23,4 +24,15 @@ build/
 config.toml
 prefect_server.log
 prefect_worker.log
+
+# Terraform local state
+terraform.tfstate
+terraform.tfstate.backup
+
+# Terraform variable overrides (if contains secrets)
+terraform.tfvars
+
+# Terraform provider & lock files
+.terraform/
+.terraform.lock.hcl
 
