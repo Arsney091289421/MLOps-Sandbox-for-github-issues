@@ -35,7 +35,7 @@ The bucket and versioning setup is managed via Terraform (`infra/s3.tf`):
 
 </details><summary>S3 versioning in action</summary>
 
-<img src="docs/s3_model_versioning.png" width="600">
+![](docs/s3_model_versioning.png)
 
 </details>
 
