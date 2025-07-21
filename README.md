@@ -17,6 +17,7 @@ with an automated pipeline that **fetches - features - tunes - trains - pushes t
 | **Versioning & export** | `latest_model.json` + `history/` - **S3** |
 | **Orchestration** | Prefect DAG, alert when **AUC < 0.60** |
 | **CI** | `pytest + moto` mocks • GitHub Actions |
+| **Infra as Code** | S3 bucket and versioning managed with Terraform |
 
 ### Workflow & Automation
 
@@ -25,6 +26,16 @@ with an automated pipeline that **fetches - features - tunes - trains - pushes t
 <details><summary>Flow run log &amp; AUC</summary>
 
 ![](docs/prefect_log_auc.png)
+
+</details>
+
+### S3 Model Versioning
+
+The bucket and versioning setup is managed via Terraform (`infra/s3.tf`):
+
+</details><summary>S3 versioning in action</summary>
+
+<img src="docs/s3_model_versioning.png" width="600">
 
 </details>
 
